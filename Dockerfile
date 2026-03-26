@@ -5,6 +5,10 @@ RUN mvn dependency:go-offline
 COPY src ./src
 RUN mvn clean package -DskipTests
 FROM openjdk:17-jdk-slim
+
+FROM ubuntu:22.04
+RUN apt-get update && \ apt-get install -y openjdk-17-jdk &&\ apt-get clean
+
 WORKDIR /app
 COPY --from=build/app/target/*.jar app.jar
 ENV JAVA_HOME=/usr/local/openjdk-17
