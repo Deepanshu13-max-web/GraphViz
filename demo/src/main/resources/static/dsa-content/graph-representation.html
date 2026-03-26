@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Representation - DSA Content | Graph Visualizer</title>
+    <!-- Same CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dsa-content.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<nav class="dsa-navbar"><!-- same --></nav>
+
+<div class="dsa-container">
+    <aside class="dsa-sidebar"><!-- same structure --></aside>
+
+    <main class="dsa-main">
+        <section class="dsa-section">
+            <h2>📝 Graph Representation</h2>
+            <p>Graph ko represent karne ke do main tarike hain:</p>
+
+            <div class="comparison-table">
+                <div class="method-card">
+                    <h3>1. Adjacency Matrix</h3>
+                    <div class="code-block">
+                            <pre>
+     A  B  C  D
+  A [0, 1, 1, 0]
+  B [1, 0, 0, 1]
+  C [1, 0, 0, 1]
+  D [0, 1, 1, 0]</pre>
+                    </div>
+                    <ul>
+                        <li><strong>Space:</strong> O(V²)</li>
+                        <li><strong>Edge check:</strong> O(1)</li>
+                        <li><strong>Find neighbors:</strong> O(V)</li>
+                        <li><strong>Best for:</strong> Dense graphs</li>
+                    </ul>
+                </div>
+
+                <div class="method-card">
+                    <h3>2. Adjacency List</h3>
+                    <div class="code-block">
+                            <pre>
+A → [B, C]
+B → [A, D]
+C → [A, D]
+D → [B, C]</pre>
+                    </div>
+                    <ul>
+                        <li><strong>Space:</strong> O(V + E)</li>
+                        <li><strong>Edge check:</strong> O(degree)</li>
+                        <li><strong>Find neighbors:</strong> O(1)</li>
+                        <li><strong>Best for:</strong> Sparse graphs</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="code-section">
+                <h3>💻 Implementation</h3>
+                <div class="code-tabs">
+                    <button class="tab-btn active">Adjacency List</button>
+                    <button class="tab-btn">Adjacency Matrix</button>
+                </div>
+                <div class="code-block">
+                        <pre>
+class Graph:
+    def __init__(self):
+        self.graph = {}
+
+    def add_edge(self, u, v):
+        if u not in self.graph:
+            self.graph[u] = []
+        if v not in self.graph:
+            self.graph[v] = []
+        self.graph[u].append(v)
+        self.graph[v].append(u)  # For undirected</pre>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>

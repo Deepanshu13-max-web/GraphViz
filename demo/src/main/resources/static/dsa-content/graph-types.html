@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Types of Graphs - DSA Content | Graph Visualizer</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dsa-content.css">
+</head>
+<body>
+<nav class="dsa-navbar"><!-- same --></nav>
+
+<div class="dsa-container">
+    <aside class="dsa-sidebar">
+        <div class="sidebar-section">
+            <h3>📚 Graph Theory</h3>
+            <ul>
+                <li><a href="/dsa-content/graph-basics">Graph Basics</a></li>
+                <li class="active"><a href="/dsa-content/graph-types">Types of Graphs</a></li>
+                <li><a href="/dsa-content/graph-representation">Representation</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <main class="dsa-main">
+        <section class="dsa-section">
+            <h2>📊 Types of Graphs</h2>
+
+            <div class="graph-types-grid">
+                <div class="type-card">
+                    <h3>1. Directed Graph (Digraph)</h3>
+                    <div class="type-example">A → B  (A se B, but B se A nahi)</div>
+                    <p>Edges ka direction hota hai. Jaise Twitter follows, one-way roads.</p>
+                </div>
+
+                <div class="type-card">
+                    <h3>2. Undirected Graph</h3>
+                    <div class="type-example">A — B  (Dono taraf)</div>
+                    <p>Edges bidirectional hote hain. Jaise Facebook friendship, two-way roads.</p>
+                </div>
+
+                <div class="type-card">
+                    <h3>3. Weighted Graph</h3>
+                    <div class="type-example">A -(5)- B</div>
+                    <p>Har edge ka weight/cost hota hai. Jaise distance, time, price.</p>
+                </div>
+
+                <div class="type-card">
+                    <h3>4. Unweighted Graph</h3>
+                    <div class="type-example">A — B</div>
+                    <p>Sab edges ka weight same (usually 1) maana jata hai.</p>
+                </div>
+
+                <div class="type-card">
+                    <h3>5. Cyclic Graph</h3>
+                    <div class="type-example">A → B → C → A</div>
+                    <p>Graph me kam se kam ek cycle ho.</p>
+                </div>
+
+                <div class="type-card">
+                    <h3>6. Acyclic Graph</h3>
+                    <div class="type-example">A → B → C</div>
+                    <p>Koi cycle na ho. Jaise trees, DAG.</p>
+                </div>
+
+                <div class="type-card">
+                    <h3>7. Connected Graph</h3>
+                    <div class="type-example">Every node reachable</div>
+                    <p>Har node se har node tak path ho.</p>
+                </div>
+
+                <div class="type-card">
+                    <h3>8. Disconnected Graph</h3>
+                    <div class="type-example">Multiple components</div>
+                    <p>Kuch nodes reachable nahi hain.</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>📌 Important:</h4>
+                <p>Ek graph multiple types ka ho sakta hai - jaise Directed Weighted Cyclic Graph, Undirected Unweighted Acyclic Graph (Tree), etc.</p>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,392 @@
+/* ============================================ */
+/* ANIMATIONS CSS - All Animations for Content */
+/* ============================================ */
+
+/* Graph Node Animations */
+@keyframes nodeAppear {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes nodePulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(108, 92, 231, 0.4);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px 10px rgba(108, 92, 231, 0.2);
+    }
+}
+
+@keyframes nodeVisited {
+    0% {
+        background: var(--primary);
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+        filter: brightness(1.3);
+    }
+    100% {
+        background: var(--secondary);
+        transform: scale(1);
+    }
+}
+
+@keyframes nodePath {
+    0% {
+        background: var(--secondary);
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+        box-shadow: 0 0 30px var(--secondary);
+    }
+    100% {
+        background: var(--accent);
+        transform: scale(1);
+    }
+}
+
+/* Edge Animations */
+@keyframes edgeDraw {
+    0% {
+        stroke-dashoffset: 1000;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes edgeHighlight {
+    0%, 100% {
+        stroke: var(--primary);
+        stroke-width: 2;
+    }
+    50% {
+        stroke: var(--secondary);
+        stroke-width: 4;
+    }
+}
+
+@keyframes edgeFlow {
+    0% {
+        stroke-dashoffset: 20;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* BFS Animation */
+@keyframes bfsLevel {
+    0% {
+        transform: translateY(0);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(-20px);
+        opacity: 1;
+    }
+}
+
+/* DFS Animation */
+@keyframes dfsDepth {
+    0% {
+        transform: translateX(0);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateX(20px);
+        opacity: 1;
+    }
+}
+
+/* Dijkstra Animation */
+@keyframes dijkstraExplore {
+    0% {
+        r: 20;
+        opacity: 0.3;
+    }
+    50% {
+        r: 30;
+        opacity: 0.6;
+    }
+    100% {
+        r: 20;
+        opacity: 1;
+    }
+}
+
+/* MST Animation */
+@keyframes mstGrow {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Loading Animations */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes progress {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
+/* Page Transitions */
+@keyframes pageEnter {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pageExit {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+/* Hover Animations */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 5px var(--primary);
+    }
+    50% {
+        box-shadow: 0 0 20px var(--primary);
+    }
+}
+
+/* Text Animations */
+@keyframes textGlow {
+    0%, 100% {
+        text-shadow: 0 0 10px transparent;
+    }
+    50% {
+        text-shadow: 0 0 20px var(--primary);
+    }
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+/* Card Animations */
+@keyframes cardFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes cardGlow {
+    0%, 100% {
+        border-color: var(--border);
+    }
+    50% {
+        border-color: var(--primary);
+    }
+}
+
+/* Background Animations */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes particleFloat {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) translateX(50px);
+        opacity: 0;
+    }
+}
+
+/* Graph Animation Classes */
+.node-appear {
+    animation: nodeAppear 0.5s ease-out;
+}
+
+.node-pulse {
+    animation: nodePulse 2s infinite;
+}
+
+.node-visited {
+    animation: nodeVisited 1s ease-out;
+}
+
+.node-path {
+    animation: nodePath 1.5s infinite;
+}
+
+.edge-draw {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: edgeDraw 2s forwards;
+}
+
+.edge-highlight {
+    animation: edgeHighlight 1s infinite;
+}
+
+.edge-flow {
+    stroke-dasharray: 10;
+    animation: edgeFlow 0.5s linear infinite;
+}
+
+.bfs-level {
+    animation: bfsLevel 0.8s ease-out;
+}
+
+.dfs-depth {
+    animation: dfsDepth 0.8s ease-out;
+}
+
+.dijkstra-explore {
+    animation: dijkstraExplore 1s ease-out;
+}
+
+.mst-grow {
+    animation: mstGrow 0.5s ease-out;
+}
+
+/* Loading Spinner */
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(108, 92, 231, 0.3);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.progress-bar {
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    animation: progress 2s ease-out;
+}
+
+/* Page Transition */
+.page-enter {
+    animation: pageEnter 0.3s ease-out;
+}
+
+.page-exit {
+    animation: pageExit 0.3s ease-out;
+}
+
+/* Hover Effects */
+.hover-float:hover {
+    animation: float 2s infinite;
+}
+
+.hover-glow:hover {
+    animation: glow 1.5s infinite;
+}
+
+/* Text Effects */
+.text-glow {
+    animation: textGlow 2s infinite;
+}
+
+.typing-effect {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid var(--primary);
+    animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
+}
+
+/* Card Effects */
+.card-float {
+    animation: cardFloat 3s infinite;
+}
+
+.card-glow {
+    animation: cardGlow 2s infinite;
+}
+
+/* Background Effects */
+.gradient-bg {
+    background: linear-gradient(-45deg, var(--dark), var(--surface), var(--primary), var(--secondary));
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+}
+
+.particles {
+    position: relative;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--primary);
+    border-radius: 50%;
+    animation: particleFloat 3s linear infinite;
+}
+
+/* Responsive Animations */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Basics - DSA Content | Graph Visualizer</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dsa-content.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<!-- Animated Background -->
+<div class="dsa-bg">
+    <div class="floating-graph"></div>
+</div>
+
+<!-- Navbar -->
+<nav class="dsa-navbar">
+    <div class="logo">
+        <span class="logo-icon">📊</span>
+        <span class="logo-text">GraphViz</span>
+    </div>
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/dsa-content/graph-basics" class="active">Learn DSA</a>
+        <a href="/dashboard">Visualizer</a>
+        <a href="/login" class="btn-outline">Login</a>
+        <a href="/signup" class="btn-primary">Sign Up</a>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="algo-hero">
+    <div class="algo-hero-content">
+        <h1>Graph <span class="gradient-text">Theory Basics</span></h1>
+        <p class="algo-subtitle">Understanding the fundamentals of graphs - Nodes, Edges, and Relationships</p>
+    </div>
+</section>
+
+<!-- Main Content -->
+<div class="dsa-container">
+    <!-- Sidebar -->
+    <aside class="dsa-sidebar">
+        <div class="sidebar-section">
+            <h3><i class="fas fa-book"></i> Graph Theory</h3>
+            <ul>
+                <li class="active"><a href="#introduction">1. Introduction to Graphs</a></li>
+                <li><a href="#terminology">2. Graph Terminology</a></li>
+                <li><a href="#types">3. Types of Graphs</a></li>
+                <li><a href="#representation">4. Graph Representation</a></li>
+                <li><a href="#properties">5. Graph Properties</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dsa-main">
+        <section id="introduction" class="dsa-section">
+            <h2><i class="fas fa-info-circle"></i> What is a Graph?</h2>
+
+            <div class="info-box">
+                <p>Graph ek <strong>non-linear data structure</strong> hai jo nodes (vertices) aur edges se milkar banta hai. Jaise social network me log (nodes) aur unki friendship (edges).</p>
+            </div>
+
+            <div class="real-life-example">
+                <h3>🌍 Real Life Examples:</h3>
+
+                <div class="example-card hover-float">
+                    <i class="fab fa-facebook"></i>
+                    <div>
+                        <h4>Social Networks</h4>
+                        <p><strong>Nodes:</strong> Users | <strong>Edges:</strong> Friendships</p>
+                    </div>
+                </div>
+
+                <div class="example-card hover-float">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <div>
+                        <h4>Maps & Navigation</h4>
+                        <p><strong>Nodes:</strong> Cities | <strong>Edges:</strong> Roads</p>
+                    </div>
+                </div>
+
+                <div class="example-card hover-float">
+                    <i class="fas fa-globe"></i>
+                    <div>
+                        <h4>Internet</h4>
+                        <p><strong>Nodes:</strong> Websites | <strong>Edges:</strong> Hyperlinks</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="terminology" class="dsa-section">
+            <h2><i class="fas fa-tags"></i> Graph Terminology</h2>
+
+            <table class="complexity-table">
+                <tr>
+                    <th>Term</th>
+                    <th>Meaning</th>
+                    <th>Example</th>
+                </tr>
+                <tr>
+                    <td><strong>Vertex/Node</strong></td>
+                    <td>Graph ka basic unit (point)</td>
+                    <td>City, Person, Website</td>
+                </tr>
+                <tr>
+                    <td><strong>Edge</strong></td>
+                    <td>Nodes ke beech connection</td>
+                    <td>Road, Friendship, Link</td>
+                </tr>
+                <tr>
+                    <td><strong>Path</strong></td>
+                    <td>Nodes ka sequence</td>
+                    <td>A → B → C</td>
+                </tr>
+                <tr>
+                    <td><strong>Cycle</strong></td>
+                    <td>Path jisme start aur end same</td>
+                    <td>A → B → C → A</td>
+                </tr>
+                <tr>
+                    <td><strong>Degree</strong></td>
+                    <td>Node se kitne edges connected</td>
+                    <td>Node A ki degree 3</td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="types" class="dsa-section">
+            <h2><i class="fas fa-project-diagram"></i> Types of Graphs</h2>
+
+            <div class="graph-types-grid">
+                <div class="type-card hover-glow">
+                    <div class="type-icon">🔄</div>
+                    <h3>Directed Graph</h3>
+                    <p>Edges ka direction hota hai</p>
+                    <div class="type-example">
+                        A → B  (A se B ja sakte)
+                    </div>
+                </div>
+
+                <div class="type-card hover-glow">
+                    <div class="type-icon">🔗</div>
+                    <h3>Undirected Graph</h3>
+                    <p>Edges bidirectional hote hain</p>
+                    <div class="type-example">
+                        A — B  (Dono taraf ja sakte)
+                    </div>
+                </div>
+
+                <div class="type-card hover-glow">
+                    <div class="type-icon">⚖️</div>
+                    <h3>Weighted Graph</h3>
+                    <p>Har edge ka weight/cost hota hai</p>
+                    <div class="type-example">
+                        A -(5)- B  (Distance 5)
+                    </div>
+                </div>
+
+                <div class="type-card hover-glow">
+                    <div class="type-icon">1️⃣</div>
+                    <h3>Unweighted Graph</h3>
+                    <p>Sab edges ka weight same (1)</p>
+                    <div class="type-example">
+                        A — B  (Weight = 1)
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>

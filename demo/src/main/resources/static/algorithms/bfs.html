@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BFS Algorithm - Complete Guide | Graph Visualizer</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dsa-content.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<!-- Animated Background -->
+<div class="dsa-bg">
+    <div class="floating-graph"></div>
+    <div class="particles">
+        <div class="particle" style="top: 10%; left: 20%; animation-delay: 0s;"></div>
+        <div class="particle" style="top: 30%; left: 80%; animation-delay: 1s;"></div>
+        <div class="particle" style="top: 70%; left: 40%; animation-delay: 2s;"></div>
+    </div>
+</div>
+
+<!-- Navbar -->
+<nav class="dsa-navbar">
+    <div class="logo">
+        <span class="logo-icon">📊</span>
+        <span class="logo-text">GraphViz</span>
+    </div>
+    <div class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../dsa-content/graph-basics.html" class="active">Learn DSA</a>
+        <a href="../dashboard.html">Visualizer</a>
+        <a href="#practice">Practice</a>
+        <a href="../login.html" class="btn-outline">Login</a>
+        <a href="../signup.html" class="btn-primary">Sign Up</a>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="algo-hero">
+    <div class="algo-hero-content">
+        <h1 class="gradient-text">Breadth-First Search</h1>
+        <p class="algo-subtitle">Level-by-level graph traversal algorithm using Queue</p>
+        <div class="algo-quick-info">
+            <span class="hover-glow"><i class="fas fa-clock"></i> Time: O(V + E)</span>
+            <span class="hover-glow"><i class="fas fa-memory"></i> Space: O(V)</span>
+            <span class="hover-glow"><i class="fas fa-layer-group"></i> Type: Traversal</span>
+        </div>
+    </div>
+    <div class="algo-hero-visual">
+        <img src="/assets/images/bfs-animation.gif" alt="BFS Animation" class="node-pulse">
+    </div>
+</section>
+
+<!-- Main Content -->
+<div class="dsa-container">
+    <!-- Sidebar -->
+    <aside class="dsa-sidebar">
+        <div class="sidebar-section">
+            <h3><i class="fas fa-book-open"></i> Algorithm Guide</h3>
+            <ul>
+                <li class="active"><a href="#introduction">1. Introduction</a></li>
+                <li><a href="#how-it-works">2. How BFS Works</a></li>
+                <li><a href="#visual-explanation">3. Visual Explanation</a></li>
+                <li><a href="#pseudocode">4. Pseudocode</a></li>
+                <li><a href="#complexity">5. Complexity Analysis</a></li>
+                <li><a href="#applications">6. Real Applications</a></li>
+                <li><a href="#examples">7. Code Examples</a></li>
+                <li><a href="#practice">8. Practice Problems</a></li>
+                <li><a href="#faq">9. FAQ</a></li>
+            </ul>
+        </div>
+
+        <div class="sidebar-section">
+            <h3><i class="fas fa-project-diagram"></i> Related Algorithms</h3>
+            <ul>
+                <li><a href="dfs.html">Depth-First Search (DFS)</a></li>
+                <li><a href="dijkstra.html">Dijkstra's Algorithm</a></li>
+                <li><a href="/algorithms/bellman-ford">Bellman-Ford</a></li>
+            </ul>
+        </div>
+
+        <div class="sidebar-section">
+            <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+            <a href="../dashboard.html" class="btn-primary btn-block">
+                <i class="fas fa-play"></i> Try BFS Now
+            </a>
+            <a href="#practice" class="btn-outline btn-block">
+                <i class="fas fa-code"></i> Practice Problems
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dsa-main">
+        <!-- Introduction Section -->
+        <section id="introduction" class="dsa-section card-float">
+            <h2><i class="fas fa-info-circle"></i> What is BFS Algorithm?</h2>
+
+            <div class="info-box">
+                <p><strong>Breadth-First Search (BFS)</strong> ek graph traversal algorithm hai jo graph ya tree ke nodes ko <span class="text-glow">level by level</span> explore karta hai. Iska matlab pehle current node ke saare neighbors visit hote hain, phir unke neighbors, aur aise hi aage.</p>
+            </div>
+
+            <div class="key-points">
+                <h3>🎯 Key Points:</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> <strong>Queue</strong> data structure use hota hai (FIFO)</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Level order</strong> traversal karta hai</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Shortest path</strong> find karta hai (unweighted graphs me)</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Connected components</strong> dhundh sakte hain</li>
+                </ul>
+            </div>
+
+            <div class="real-life-example">
+                <h3>🌍 Real Life Examples:</h3>
+
+                <div class="example-card hover-float">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <div>
+                        <h4>GPS Navigation</h4>
+                        <p>Jab aap Google Maps me shortest route dhundhte ho (bina weight ke), to BFS ka concept use hota hai. Ye pehle nearby roads check karta hai, phir unse connected roads.</p>
+                    </div>
+                </div>
+
+                <div class="example-card hover-float">
+                    <i class="fas fa-users"></i>
+                    <div>
+                        <h4>Social Networks</h4>
+                        <p>LinkedIn me "2nd degree connections" dikhana - BFS se pata chalata hai ki do log kitne levels me connected hain.</p>
+                    </div>
+                </div>
+
+                <div class="example-card hover-float">
+                    <i class="fas fa-globe"></i>
+                    <div>
+                        <h4>Web Crawlers</h4>
+                        <p>Google jaise search engines pehle current page ke links visit karte hain (BFS style).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="dsa-section">
+            <h2><i class="fas fa-cogs"></i> How BFS Algorithm Works?</h2>
+
+            <div class="steps-container">
+                <div class="step-card hover-glow">
+                    <div class="step-number node-appear">1</div>
+                    <h4>Initialize</h4>
+                    <p>Ek queue lo, ek visited array lo. Start node ko queue me daalo aur visited mark karo.</p>
+                    <div class="code-snippet">
+                        queue = [A]<br>
+                        visited = {A}
+                    </div>
+                </div>
+
+                <div class="step-card hover-glow">
+                    <div class="step-number node-appear" style="animation-delay: 0.2s;">2</div>
+                    <h4>Process Node</h4>
+                    <p>Queue se ek node nikaalo (dequeue). Use process karo.</p>
+                    <div class="code-snippet">
+                        current = A<br>
+                        print(A)
+                    </div>
+                </div>
+
+                <div class="step-card hover-glow">
+                    <div class="step-number node-appear" style="animation-delay: 0.4s;">3</div>
+                    <h4>Add Neighbors</h4>
+                    <p>Current node ke saare unvisited neighbors ko queue me daalo aur visited mark karo.</p>
+                    <div class="code-snippet">
+                        neighbors = [B, C]<br>
+                        queue = [B, C]
+                    </div>
+                </div>
+
+                <div class="step-card hover-glow">
+                    <div class="step-number node-appear" style="animation-delay: 0.6s;">4</div>
+                    <h4>Repeat</h4>
+                    <p>Jab tak queue empty na ho, step 2-3 repeat karo.</p>
+                    <div class="code-snippet">
+                        while queue:<br>
+                        &nbsp;&nbsp;process()
+                    </div>
+                </div>
+            </div>
+
+            <div class="visual-aid">
+                <h3>📊 Step-by-Step Visualization:</h3>
+                <div class="example-graph">
+                        <pre>
+        A (Level 0)
+       / \
+      B   C (Level 1)
+     / \   \
+    D   E   F (Level 2)
+                        </pre>
+                    <p><strong>BFS Traversal:</strong> A → B → C → D → E → F</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visual Explanation with Interactive Demo -->
+        <section id="visual-explanation" class="dsa-section">
+            <h2><i class="fas fa-eye"></i> Visual Explanation</h2>
+
+            <div class="interactive-demo">
+                <h3>🎮 Try It Yourself:</h3>
+                <div class="demo-controls">
+                    <button class="btn-primary" onclick="runBFS()">
+                        <i class="fas fa-play"></i> Run BFS
+                    </button>
+                    <button class="btn-outline" onclick="resetBFS()">
+                        <i class="fas fa-redo"></i> Reset
+                    </button>
+                    <select id="start-node" class="btn-outline">
+                        <option value="A">Start from A</option>
+                        <option value="B">Start from B</option>
+                        <option value="C">Start from C</option>
+                    </select>
+                </div>
+
+                <div class="demo-canvas-container">
+                    <canvas id="bfs-interactive-canvas"></canvas>
+                </div>
+
+                <div class="demo-output">
+                    <h4>Output:</h4>
+                    <div class="output-box" id="bfs-output">
+                        Click "Run BFS" to start
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pseudocode Section -->
+        <section id="pseudocode" class="dsa-section">
+            <h2><i class="fas fa-code"></i> Pseudocode</h2>
+
+            <div class="code-tabs">
+                <button class="tab-btn active" onclick="showCode('python')">Python</button>
+                <button class="tab-btn" onclick="showCode('java')">Java</button>
+                <button class="tab-btn" onclick="showCode('cpp')">C++</button>
+                <button class="tab-btn" onclick="showCode('javascript')">JavaScript</button>
+            </div>
+
+            <div class="code-block active" id="python-code">
+                    <pre>
+def bfs(graph, start_node):
+    # Create queue and visited set
+    queue = [start_node]
+    visited = set([start_node])
+
+    while queue:
+        # Dequeue a vertex
+        current = queue.pop(0)
+        print(current, end=" ")
+
+        # Get all adjacent vertices
+        for neighbor in graph[current]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)
+                    </pre>
+            </div>
+
+            <div class="code-block" id="java-code">
+                    <pre>
+void bfs(Graph graph, Node start) {
+    Queue&lt;Node&gt; queue = new LinkedList&lt;&gt;();
+    Set&lt;Node&gt; visited = new HashSet&lt;&gt;();
+
+    queue.add(start);
+    visited.add(start);
+
+    while (!queue.isEmpty()) {
+        Node current = queue.poll();
+        System.out.print(current + " ");
+
+        for (Node neighbor : graph.getNeighbors(current)) {
+            if (!visited.contains(neighbor)) {
+                visited.add(neighbor);
+                queue.add(neighbor);
+            }
+        }
+    }
+}
+                    </pre>
+            </div>
+
+            <div class="code-block" id="cpp-code">
+                    <pre>
+void bfs(vector&lt;vector&lt;int&gt;&gt;& graph, int start) {
+    queue&lt;int&gt; q;
+    vector&lt;bool&gt; visited(graph.size(), false);
+
+    q.push(start);
+    visited[start] = true;
+
+    while (!q.empty()) {
+        int current = q.front();
+        q.pop();
+        cout << current << " ";
+
+        for (int neighbor : graph[current]) {
+            if (!visited[neighbor]) {
+                visited[neighbor] = true;
+                q.push(neighbor);
+            }
+        }
+    }
+}
+                    </pre>
+            </div>
+
+            <div class="code-block" id="javascript-code">
+                    <pre>
+function bfs(graph, startNode) {
+    const queue = [startNode];
+    const visited = new Set([startNode]);
+
+    while (queue.length > 0) {
+        const current = queue.shift();
+        console.log(current);
+
+        for (const neighbor of graph[current]) {
+            if (!visited.has(neighbor)) {
+                visited.add(neighbor);
+                queue.push(neighbor);
+            }
+        }
+    }
+}
+                    </pre>
+            </div>
+
+            <div class="code-explanation">
+                <h4>📖 Code Explanation:</h4>
+                <ul>
+                    <li><strong>Line 1-3:</strong> Queue aur visited set initialize kiya</li>
+                    <li><strong>Line 5:</strong> Jab tak queue empty nahi hoti</li>
+                    <li><strong>Line 7:</strong> Queue se front element nikal rahe hain</li>
+                    <li><strong>Line 8:</strong> Current node ko print/process kar rahe hain</li>
+                    <li><strong>Line 10-13:</strong> Saare unvisited neighbors ko queue me daal rahe hain</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Complexity Analysis -->
+        <section id="complexity" class="dsa-section">
+            <h2><i class="fas fa-chart-line"></i> Complexity Analysis</h2>
+
+            <table class="complexity-table">
+                <tr>
+                    <th>Case</th>
+                    <th>Time Complexity</th>
+                    <th>Space Complexity</th>
+                    <th>Explanation</th>
+                </tr>
+                <tr>
+                    <td>Best Case</td>
+                    <td>O(1)</td>
+                    <td>O(1)</td>
+                    <td>Target immediately found (if searching)</td>
+                </tr>
+                <tr>
+                    <td>Average Case</td>
+                    <td>O(V + E)</td>
+                    <td>O(V)</td>
+                    <td>Visit all vertices and edges once</td>
+                </tr>
+                <tr>
+                    <td>Worst Case</td>
+                    <td>O(V + E)</td>
+                    <td>O(V)</td>
+                    <td>Complete graph, all nodes connected</td>
+                </tr>
+            </table>
+
+            <div class="complexity-details">
+                <h4>🔍 Detailed Analysis:</h4>
+                <ul>
+                    <li><strong>V (Vertices):</strong> Har vertex ek baar queue me aata hai - O(V)</li>
+                    <li><strong>E (Edges):</strong> Har edge do baar check hoti hai (directed me ek baar) - O(E)</li>
+                    <li><strong>Space:</strong> Queue me at most V nodes store hote hain - O(V)</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <p><i class="fas fa-lightbulb"></i> <strong>Note:</strong> BFS ka time complexity O(V + E) hota hai kyunki har vertex aur edge ek baar process hoti hai.</p>
+            </div>
+        </section>
+
+        <!-- Real Applications -->
+        <section id="applications" class="dsa-section">
+            <h2><i class="fas fa-rocket"></i> Real-World Applications</h2>
+
+            <div class="applications-grid">
+                <div class="app-card hover-float">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>GPS Navigation</h3>
+                    <p>Shortest path in unweighted maps, nearby locations find karna</p>
+                </div>
+
+                <div class="app-card hover-float">
+                    <i class="fas fa-globe"></i>
+                    <h3>Web Crawlers</h3>
+                    <p>Google jaise search engines pehle current page ke links visit karte hain</p>
+                </div>
+
+                <div class="app-card hover-float">
+                    <i class="fas fa-users"></i>
+                    <h3>Social Networks</h3>
+                    <p>Friend suggestions, mutual friends find karna</p>
+                </div>
+
+                <div class="app-card hover-float">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Gaming</h3>
+                    <p>Maze solving, path finding in games</p>
+                </div>
+
+                <div class="app-card hover-float">
+                    <i class="fas fa-network-wired"></i>
+                    <h3>Network Broadcasting</h3>
+                    <p>Routers use BFS to send packets to all nodes</p>
+                </div>
+
+                <div class="app-card hover-float">
+                    <i class="fas fa-dna"></i>
+                    <h3>Connected Components</h3>
+                    <p>Finding connected components in graphs</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Code Examples -->
+        <section id="examples" class="dsa-section">
+            <h2><i class="fas fa-laptop-code"></i> Complete Code Examples</h2>
+
+            <div class="example-tabs">
+                <button class="tab-btn active" onclick="showExample('adjacency-list')">Adjacency List</button>
+                <button class="tab-btn" onclick="showExample('adjacency-matrix')">Adjacency Matrix</button>
+                <button class="tab-btn" onclick="showExample('object-oriented')">Object Oriented</button>
+            </div>
+
+            <div class="code-block active" id="adjacency-list-example">
+                    <pre>
+class Graph:
+    def __init__(self):
+        self.graph = {}
+
+    def add_edge(self, u, v):
+        if u not in self.graph:
+            self.graph[u] = []
+        if v not in self.graph:
+            self.graph[v] = []
+        self.graph[u].append(v)
+        self.graph[v].append(u)  # For undirected graph
+
+    def bfs(self, start):
+        visited = set()
+        queue = [start]
+        visited.add(start)
+
+        while queue:
+            vertex = queue.pop(0)
+            print(vertex, end=' ')
+
+            for neighbor in self.graph[vertex]:
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    queue.append(neighbor)
+
+# Example usage
+g = Graph()
+g.add_edge('A', 'B')
+g.add_edge('A', 'C')
+g.add_edge('B', 'D')
+g.add_edge('C', 'E')
+print("BFS Traversal starting from A:")
+g.bfs('A')  # Output: A B C D E
+                    </pre>
+            </div>
+
+            <div class="code-block" id="adjacency-matrix-example">
+                    <pre>
+class GraphMatrix:
+    def __init__(self, size):
+        self.size = size
+        self.matrix = [[0] * size for _ in range(size)]
+
+    def add_edge(self, u, v):
+        self.matrix[u][v] = 1
+        self.matrix[v][u] = 1  # For undirected graph
+
+    def bfs(self, start):
+        visited = [False] * self.size
+        queue = [start]
+        visited[start] = True
+
+        while queue:
+            vertex = queue.pop(0)
+            print(vertex, end=' ')
+
+            for i in range(self.size):
+                if self.matrix[vertex][i] == 1 and not visited[i]:
+                    visited[i] = True
+                    queue.append(i)
+
+# Example usage
+g = GraphMatrix(5)
+g.add_edge(0, 1)  # A-B
+g.add_edge(0, 2)  # A-C
+g.add_edge(1, 3)  # B-D
+g.add_edge(2, 4)  # C-E
+print("BFS Traversal starting from 0 (A):")
+g.bfs(0)  # Output: 0 1 2 3 4
+                    </pre>
+            </div>
+
+            <div class="code-block" id="object-oriented-example">
+                    <pre>
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.neighbors = []
+
+    def add_neighbor(self, node):
+        self.neighbors.append(node)
+
+class GraphOO:
+    def __init__(self):
+        self.nodes = {}
+
+    def add_node(self, value):
+        if value not in self.nodes:
+            self.nodes[value] = Node(value)
+
+    def add_edge(self, u, v):
+        self.add_node(u)
+        self.add_node(v)
+        self.nodes[u].add_neighbor(self.nodes[v])
+        self.nodes[v].add_neighbor(self.nodes[u])
+
+    def bfs(self, start_value):
+        if start_value not in self.nodes:
+            return
+
+        start = self.nodes[start_value]
+        visited = set()
+        queue = [start]
+        visited.add(start)
+
+        while queue:
+            current = queue.pop(0)
+            print(current.value, end=' ')
+
+            for neighbor in current.neighbors:
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    queue.append(neighbor)
+
+# Example usage
+g = GraphOO()
+g.add_edge('A', 'B')
+g.add_edge('A', 'C')
+g.add_edge('B', 'D')
+g.add_edge('C', 'E')
+print("BFS Traversal starting from A:")
+g.bfs('A')  # Output: A B C D E
+                    </pre>
+            </div>
+        </section>
+
+        <!-- Practice Problems -->
+        <section id="practice" class="dsa-section">
+            <h2><i class="fas fa-tasks"></i> Practice Problems</h2>
+
+            <div class="practice-section">
+                <div class="problem-card hover-glow">
+                    <div class="problem-info">
+                        <h4>Level Order Traversal</h4>
+                        <p>Print binary tree level by level using BFS</p>
+                    </div>
+                    <span class="difficulty easy">Easy</span>
+                    <button class="btn-outline">Solve</button>
+                </div>
+
+                <div class="problem-card hover-glow">
+                    <div class="problem-info">
+                        <h4>Shortest Path in Grid</h4>
+                        <p>Find shortest path from top-left to bottom-right</p>
+                    </div>
+                    <span class="difficulty medium">Medium</span>
+                    <button class="btn-outline">Solve</button>
+                </div>
+
+                <div class="problem-card hover-glow">
+                    <div class="problem-info">
+                        <h4>Word Ladder</h4>
+                        <p>Transform one word to another using BFS</p>
+                    </div>
+                    <span class="difficulty hard">Hard</span>
+                    <button class="btn-outline">Solve</button>
+                </div>
+
+                <div class="problem-card hover-glow">
+                    <div class="problem-info">
+                        <h4>Rotting Oranges</h4>
+                        <p>Find time to rot all oranges using multi-source BFS</p>
+                    </div>
+                    <span class="difficulty medium">Medium</span>
+                    <button class="btn-outline">Solve</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="dsa-section">
+            <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>❓ BFS vs DFS - kya difference hai?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>BFS queue use karta hai (level by level), DFS stack use karta hai (depth first). BFS shortest path deta hai unweighted graphs me, DFS cycle detection me useful hai.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>❓ BFS ka time complexity O(V+E) kyun hai?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Kyunki har vertex ek baar process hota hai (V operations) aur har edge do baar check hoti hai (E operations). Total V + E.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>❓ BFS weighted graph me shortest path dega?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nahi, BFS sirf unweighted graphs me shortest path deta hai. Weighted graphs ke liye Dijkstra use karte hain.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>❓ BFS ka space complexity O(V) kyun hai?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Queue me worst case me saare nodes aa sakte hain (V) aur visited array me bhi V nodes store hote hain.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Try Yourself -->
+        <div class="try-section">
+            <h3>Ready to Practice?</h3>
+            <p>Ab jo seekha, use abhi implement karo</p>
+            <a href="../dashboard.html" class="btn-primary btn-large">
+                <i class="fas fa-play"></i> Open Visualizer
+            </a>
+        </div>
+    </main>
+</div>
+
+<!-- Footer -->
+<footer class="dsa-footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <div class="logo">
+                <span class="logo-icon">📊</span>
+                <span class="logo-text">GraphViz</span>
+            </div>
+            <p>Making graph algorithms visual and intuitive for everyone.</p>
+        </div>
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../dsa-content/graph-basics.html">Learn DSA</a></li>
+                <li><a href="../dashboard.html">Visualizer</a></li>
+                <li><a href="#practice">Practice</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Algorithms</h4>
+            <ul>
+                <li><a href="bfs.html">BFS</a></li>
+                <li><a href="dfs.html">DFS</a></li>
+                <li><a href="dijkstra.html">Dijkstra</a></li>
+                <li><a href="prims.html">Prim's MST</a></li>
+                <li><a href="kruskal.html">Kruskal's MST</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Graph Algorithm Visualizer. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="../js/dsa-content.js"></script>
+<script>
+    // FAQ Toggle
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.parentElement;
+            item.classList.toggle('active');
+            const icon = question.querySelector('i');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        });
+    });
+
+    // Code Tabs
+    function showCode(lang) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.code-block').forEach(block => block.classList.remove('active'));
+
+        event.target.classList.add('active');
+        document.getElementById(`${lang}-code`).classList.add('active');
+    }
+
+    function showExample(type) {
+        document.querySelectorAll('.example-tabs .tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('#examples .code-block').forEach(block => block.classList.remove('active'));
+
+        event.target.classList.add('active');
+        document.getElementById(`${type}-example`).classList.add('active');
+    }
+
+    // BFS Demo
+    function runBFS() {
+        const output = document.getElementById('bfs-output');
+        output.innerHTML = '';
+        const steps = ['A', 'B', 'C', 'D', 'E', 'F'];
+        let i = 0;
+
+        const interval = setInterval(() => {
+            if (i < steps.length) {
+                output.innerHTML += steps[i] + ' ';
+                i++;
+            } else {
+                clearInterval(interval);
+            }
+        }, 500);
+    }
+
+    function resetBFS() {
+        document.getElementById('bfs-output').innerHTML = 'Click "Run BFS" to start';
+    }
+</script>
+</body>
+</html>

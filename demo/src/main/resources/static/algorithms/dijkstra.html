@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dijkstra's Algorithm - Complete Guide | Graph Visualizer</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dsa-content.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<!-- Navbar same as above -->
+
+<!-- Hero Section -->
+<section class="algo-hero">
+    <div class="algo-hero-content">
+        <h1>Dijkstra's <span class="gradient-text">Algorithm</span></h1>
+        <p class="algo-subtitle">Shortest path algorithm for weighted graphs</p>
+        <div class="algo-quick-info">
+            <span><i class="fas fa-clock"></i> Time: O((V + E) log V)</span>
+            <span><i class="fas fa-memory"></i> Space: O(V)</span>
+            <span><i class="fas fa-weight-hanging"></i> Type: Shortest Path</span>
+        </div>
+    </div>
+</section>
+
+<div class="dsa-container">
+    <aside class="dsa-sidebar"><!-- same structure --></aside>
+
+    <main class="dsa-main">
+        <section class="dsa-section">
+            <h2>🎯 What is Dijkstra's Algorithm?</h2>
+            <div class="info-box">
+                <p>Dijkstra's algorithm weighted graph me <strong>shortest path</strong> find karta hai ek source node se sabhi nodes tak.</p>
+            </div>
+
+            <div class="key-points">
+                <h3>Key Points:</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> <strong>Priority Queue</strong> (Min Heap) use hota hai</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Greedy approach</strong> follow karta hai</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Non-negative weights</strong> required</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>GPS, Maps</strong> me use hota hai</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="dsa-section">
+            <h2>📊 Step by Step Example</h2>
+            <div class="example-graph">
+                    <pre>
+    A --4-- B
+    |       |
+    2       1
+    |       |
+    C --3-- D
+                    </pre>
+                <p>Shortest path from A to D: A → C → D (Total: 5)</p>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>

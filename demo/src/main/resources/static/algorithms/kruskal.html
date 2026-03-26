@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kruskal's Algorithm - Minimum Spanning Tree | Graph Visualizer</title>
+    <!-- Same CSS links -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dsa-content.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<section class="algo-hero">
+    <div class="algo-hero-content">
+        <h1>Kruskal's <span class="gradient-text">Algorithm</span></h1>
+        <p class="algo-subtitle">Minimum Spanning Tree - Edge based approach with Union-Find</p>
+        <div class="algo-quick-info">
+            <span><i class="fas fa-clock"></i> Time: O(E log E)</span>
+            <span><i class="fas fa-tree"></i> Type: MST</span>
+        </div>
+    </div>
+</section>
+
+<main class="dsa-main">
+    <section class="dsa-section">
+        <h2>🔗 What is Kruskal's Algorithm?</h2>
+        <div class="info-box">
+            <p>Kruskal's algorithm bhi <strong>Minimum Spanning Tree</strong> banata hai, lekin ye edge-based approach use karta hai. <strong>Union-Find</strong> data structure se cycles detect karta hai.</p>
+        </div>
+
+        <div class="key-points">
+            <h3>🎯 Key Points:</h3>
+            <ul>
+                <li><i class="fas fa-check-circle"></i> Edges ko weight ke hisaab se sort karo</li>
+                <li><i class="fas fa-check-circle"></i> Union-Find se cycle detection</li>
+                <li><i class="fas fa-check-circle"></i> Smallest edge jo cycle na banaye, use MST me add karo</li>
+                <li><i class="fas fa-check-circle"></i> Sparse graphs ke liye better hai</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="dsa-section">
+        <h2>📊 Step by Step Example</h2>
+        <div class="example-graph">
+                <pre>
+    A ---5--- B
+    |         |
+    2         3
+    |         |
+    C ---4--- D
+    |         |
+    6         1
+    |         |
+    E ---7--- F
+                </pre>
+        </div>
+    </section>
+
+    <section class="dsa-section">
+        <h2>📝 Pseudocode with Union-Find</h2>
+        <div class="code-block">
+                <pre>
+class UnionFind:
+    def __init__(self, n):
+        self.parent = list(range(n))
+        self.rank = [0] * n
+
+    def find(self, x):
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+
+    def union(self, x, y):
+        px, py = self.find(x), self.find(y)
+        if px == py:
+            return False
+
+        if self.rank[px] < self.rank[py]:
+            self.parent[px] = py
+        elif self.rank[px] > self.rank[py]:
+            self.parent[py] = px
+        else:
+            self.parent[py] = px
+            self.rank[px] += 1
+        return True
+
+def kruskal(vertices, edges):
+    # edges = [(weight, u, v), ...]
+    edges.sort()  # Sort by weight
+    uf = UnionFind(vertices)
+    mst = []
+    total_weight = 0
+
+    for weight, u, v in edges:
+        if uf.union(u, v):
+            mst.append((u, v, weight))
+            total_weight += weight
+
+    return mst, total_weight
+                </pre>
+        </div>
+    </section>
+</main>
+</body>
+</html>

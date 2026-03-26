@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DFS Algorithm - Complete Guide | Graph Visualizer</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dsa-content.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<!-- Animated Background -->
+<div class="dsa-bg">
+    <div class="floating-graph"></div>
+    <div class="particles">
+        <div class="particle" style="top: 10%; left: 20%;"></div>
+        <div class="particle" style="top: 30%; left: 80%;"></div>
+        <div class="particle" style="top: 70%; left: 40%;"></div>
+    </div>
+</div>
+
+<!-- Navbar -->
+<nav class="dsa-navbar">
+    <div class="logo">
+        <span class="logo-icon">📊</span>
+        <span class="logo-text">GraphViz</span>
+    </div>
+    <div class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../dsa-content/graph-basics.html">Learn DSA</a>
+        <a href="../dashboard.html">Visualizer</a>
+        <a href="../login.html" class="btn-outline">Login</a>
+        <a href="../signup.html" class="btn-primary">Sign Up</a>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="algo-hero">
+    <div class="algo-hero-content">
+        <h1>Depth-First Search <span class="gradient-text">(DFS)</span></h1>
+        <p class="algo-subtitle">Depth-first graph traversal algorithm using Stack</p>
+        <div class="algo-quick-info">
+            <span><i class="fas fa-clock"></i> Time: O(V + E)</span>
+            <span><i class="fas fa-memory"></i> Space: O(V)</span>
+            <span><i class="fas fa-layer-group"></i> Type: Traversal</span>
+        </div>
+    </div>
+    <div class="algo-hero-visual">
+        <img src="/assets/images/dfs-animation.gif" alt="DFS Animation">
+    </div>
+</section>
+
+<!-- Main Content -->
+<div class="dsa-container">
+    <!-- Sidebar -->
+    <aside class="dsa-sidebar">
+        <div class="sidebar-section">
+            <h3>📖 Algorithm Guide</h3>
+            <ul>
+                <li><a href="#introduction">1. Introduction</a></li>
+                <li><a href="#how-it-works">2. How DFS Works</a></li>
+                <li><a href="#visual-explanation">3. Visual Explanation</a></li>
+                <li><a href="#pseudocode">4. Pseudocode</a></li>
+                <li><a href="#complexity">5. Complexity Analysis</a></li>
+                <li><a href="#applications">6. Real Applications</a></li>
+                <li><a href="#examples">7. Code Examples</a></li>
+                <li><a href="#practice">8. Practice Problems</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dsa-main">
+        <!-- Introduction -->
+        <section id="introduction" class="dsa-section">
+            <h2>🔍 What is DFS Algorithm?</h2>
+            <div class="info-box">
+                <p><strong>Depth-First Search (DFS)</strong> ek graph traversal algorithm hai jo graph ko depth me explore karta hai. Ye stack data structure use karta hai (recursion ya explicit stack).</p>
+            </div>
+
+            <div class="key-points">
+                <h3>🎯 Key Points:</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> <strong>Stack</strong> data structure use hota hai (LIFO)</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Depth wise</strong> traversal karta hai</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Recursive</strong> ya <strong>iterative</strong> dono tarike se implement kar sakte</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Cycle detection</strong> aur <strong>topological sort</strong> me useful</li>
+                </ul>
+            </div>
+
+            <div class="real-life-example">
+                <h3>🌍 Real Life Examples:</h3>
+                <div class="example-card">
+                    <i class="fas fa-puzzle-piece"></i>
+                    <div>
+                        <h4>Maze Solving</h4>
+                        <p>Bhai jaise maze solve karte hain - pehle ek raaste depth me jao, agar rasta band ho to wapas aao.</p>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <i class="fas fa-sitemap"></i>
+                    <div>
+                        <h4>File System</h4>
+                        <p>Directory structure explore karte time - pehle ek folder ke andar jao, phir uske andar, phir wapas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section id="how-it-works" class="dsa-section">
+            <h2>⚙️ How DFS Works?</h2>
+
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h4>Start</h4>
+                    <p>Start node ko stack me daalo</p>
+                    <div class="code-snippet">stack = [A]</div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h4>Pop & Visit</h4>
+                    <p>Stack se node nikaalo, visit karo</p>
+                    <div class="code-snippet">current = A (visited)</div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h4>Push Neighbors</h4>
+                    <p>Unvisited neighbors ko stack me daalo</p>
+                    <div class="code-snippet">push B, C → stack = [B, C]</div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h4>Repeat</h4>
+                    <p>Jab tak stack empty na ho</p>
+                    <div class="code-snippet">next = C (go deeper)</div>
+                </div>
+            </div>
+
+            <div class="example-graph">
+                    <pre>
+    A
+   / \
+  B   C
+ / \   \
+D   E   F
+                    </pre>
+                <p><strong>DFS Traversal:</strong> A → C → F → B → E → D</p>
+            </div>
+        </section>
+
+        <!-- Pseudocode -->
+        <section id="pseudocode" class="dsa-section">
+            <h2>📝 Pseudocode</h2>
+
+            <div class="code-tabs">
+                <button class="tab-btn active" onclick="showCode('python')">Python</button>
+                <button class="tab-btn" onclick="showCode('java')">Java</button>
+                <button class="tab-btn" onclick="showCode('cpp')">C++</button>
+            </div>
+
+            <div class="code-block active" id="python-code">
+                    <pre>
+def dfs_recursive(graph, node, visited=None):
+    if visited is None:
+        visited = set()
+
+    visited.add(node)
+    print(node, end=" ")
+
+    for neighbor in graph[node]:
+        if neighbor not in visited:
+            dfs_recursive(graph, neighbor, visited)
+
+def dfs_iterative(graph, start):
+    visited = set()
+    stack = [start]
+
+    while stack:
+        node = stack.pop()
+        if node not in visited:
+            print(node, end=" ")
+            visited.add(node)
+
+            # Push neighbors in reverse order for correct order
+            for neighbor in reversed(graph[node]):
+                if neighbor not in visited:
+                    stack.append(neighbor)
+                    </pre>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>

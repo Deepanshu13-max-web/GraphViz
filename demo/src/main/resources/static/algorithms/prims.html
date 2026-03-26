@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prim's Algorithm - Minimum Spanning Tree | Graph Visualizer</title>
+    <!-- Same CSS links -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dsa-content.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<section class="algo-hero">
+    <div class="algo-hero-content">
+        <h1>Prim's <span class="gradient-text">Algorithm</span></h1>
+        <p class="algo-subtitle">Minimum Spanning Tree - Vertex based approach</p>
+        <div class="algo-quick-info">
+            <span><i class="fas fa-clock"></i> Time: O(E log V)</span>
+            <span><i class="fas fa-tree"></i> Type: MST</span>
+        </div>
+    </div>
+</section>
+
+<main class="dsa-main">
+    <section class="dsa-section">
+        <h2>🌳 What is Prim's Algorithm?</h2>
+        <div class="info-box">
+            <p>Prim's algorithm ek <strong>Minimum Spanning Tree (MST)</strong> banata hai graph ka. Ye vertex-based greedy algorithm hai.</p>
+        </div>
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h4>Start</h4>
+                <p>Kisi bhi vertex se start karo</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h4>Find Min Edge</h4>
+                <p>Visited aur unvisited ke beech minimum weight edge dhundho</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h4>Add to MST</h4>
+                <p>Us edge ko MST me add karo aur naya vertex visit karo</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h4>Repeat</h4>
+                <p>Jab tak V-1 edges na mil jayein</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="dsa-section">
+        <h2>📝 Pseudocode</h2>
+        <div class="code-block">
+                <pre>
+PrimMST(graph):
+    visited = empty set
+    mst = empty set
+    pq = priority queue
+
+    start = any vertex
+    visited.add(start)
+    add all edges of start to pq
+
+    while pq is not empty and visited.size < total_vertices:
+        minEdge = pq.extractMin()
+
+        if both ends visited:
+            continue
+
+        newVertex = unvisited end of minEdge
+        visited.add(newVertex)
+        mst.add(minEdge)
+
+        for each edge of newVertex:
+            if other end not visited:
+                pq.add(edge)
+
+    return mst
+                </pre>
+        </div>
+    </section>
+</main>
+</body>
+</html>

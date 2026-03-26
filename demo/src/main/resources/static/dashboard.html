@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard - Graph Algorithm Visualizer</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+<div class="dashboard">
+<!-- Sidebar -->
+<aside class="sidebar">
+<div class="sidebar-header">
+<div class="logo">📊 GraphViz</div>
+<button class="toggle-sidebar">◀</button>
+</div>
+<div class="user-info">
+<div class="user-avatar" id="userAvatar"></div>
+<div class="user-details">
+<span class="welcome-text">Welcome,</span>
+<span class="username" id="username">Loading...</span>
+</div>
+</div>
+<nav class="sidebar-nav">
+<div class="nav-section">
+<h3>Algorithms</h3>
+<ul>
+<li><button class="algo-btn" data-algo="bfs">🔍 BFS</button></li>
+<li><button class="algo-btn" data-algo="dfs">🌲 DFS</button></li>
+<li><button class="algo-btn" data-algo="dijkstra">📏 Dijkstra</button></li>
+<li><button class="algo-btn" data-algo="prim">🌳 Prim's MST</button></li>
+<li><button class="algo-btn" data-algo="kruskal">🔗 Kruskal's
+MST</button></li>
+</ul>
+</div>
+<div class="nav-section">
+<h3>Controls</h3>
+<ul>
+<li><button class="control-btn" id="addNodeBtn">➕ Add Node</button></li>
+<li><button class="control-btn" id="addEdgeBtn">🔗 Add Edge</button></li>
+<li><button class="control-btn" id="deleteBtn">🗑 Delete</button></li>
+<li><button class="control-btn" id="clearBtn">🧹 Clear Graph</button></li>
+</ul>
+</div>
+<div class="nav-section">
+<h3>Graph Options</h3>
+<div class="graph-settings">
+<label class="toggle-switch">
+<input type="checkbox" id="weightedToggle">
+<span class="toggle-slider"></span>
+<span>Weighted</span>
+</label>
+<label class="toggle-switch">
+<input type="checkbox" id="directedToggle">
+<span class="toggle-slider"></span>
+<span>Directed</span>
+</label>
+<div class="speed-control">
+<label>Animation Speed</label>
+<input type="range" id="speedSlider" min="0.5" max="3" step="0.1"
+value="1">
+<span id="speedValue">1x</span>
+</div>
+</div>
+</div>
+<div class="nav-section">
+<h3>Save/Load</h3>
+<div class="save-controls">
+<button class="control-btn" id="saveGraphBtn">💾 Save Graph</button>
+<button class="control-btn" id="loadGraphBtn">📂 Load Graph</button>
+<button class="control-btn" id="deleteGraphBtn">💾 Delete Graph</button>
+<button class="control-btn" id="exportJsonBtn">📤 Export JSON</button>
+<button class="control-btn" id="importJsonBtn">📥 Import JSON</button>
+</div>
+</div>
+</nav>
+<div class="sidebar-footer">
+<button class="logout-btn" id="logoutBtn">🚪 Logout</button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="main-content">
+<!-- Canvas Container -->
+<div class="canvas-container">
+<canvas id="graphCanvas"></canvas>
+<!-- Algorithm Info -->
+<div class="algorithm-info" id="algorithmInfo">
+<h3 id="algorithmName">No Algorithm Running</h3>
+<div class="algorithm-stats">
+<div class="stat">
+<span>Visited Nodes:</span>
+<span id="visitedCount">0</span>
+</div>
+<div class="stat">
+<span>Path Cost:</span>
+<span id="pathCost">0</span>
+</div>
+</div>
+</div>
+<!-- Control Buttons -->
+<div class="canvas-controls">
+<button class="control-btn" id="startAlgoBtn">▶ Start</button>
+<button class="control-btn" id="pauseAlgoBtn">⏸ Pause</button>
+<button class="control-btn" id="stepAlgoBtn">⏩ Step</button>
+<button class="control-btn" id="resetAlgoBtn">🔄 Reset</button>
+</div>
+</div>
+<!-- Modal for Saving Graph -->
+<div class="modal" id="saveModal">
+<div class="modal-content">
+<h3>Save Graph</h3>
+<input type="text" id="graphName" placeholder="Enter graph name">
+<div class="modal-buttons">
+<button class="btn-primary" id="confirmSaveBtn">Save</button>
+<button class="btn-outline" id="cancelSaveBtn">Cancel</button>
+</div>
+</div>
+</div>
+<!-- Modal for Loading Graph -->
+<div class="modal" id="loadModal">
+<div class="modal-content">
+<h3>Load Graph</h3>
+<div class="saved-graphs-list" id="savedGraphsList">
+<!-- Populated dynamically -->
+</div>
+<button class="btn-outline" id="closeLoadModalBtn">Close</button>
+</div>
+</div>
+</main>
+</div>
+<script src="js/graph.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>
