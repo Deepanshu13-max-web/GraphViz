@@ -29,7 +29,7 @@ loginBtn.disabled = true;
 const email = document.getElementById('email').value;
 const password = document.getElementById('password').value;
 try {
-const response = await fetch('http://localhost:8080/api/auth/login', {
+const response = await fetch('http://localhost:8080/auth/login', {
 method: 'POST',
 headers: {
 'Content-Type': 'application/json'
@@ -95,7 +95,7 @@ return;
 signupBtn.classList.add('loading');
 signupBtn.disabled = true;
 try {
-const response = await fetch('http://localhost:8080/api/auth/signup', {
+const response = await fetch('http://localhost:8080/auth/signup', {
 method: 'POST',
 headers: {
 'Content-Type': 'application/json'
