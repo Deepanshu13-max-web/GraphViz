@@ -4,7 +4,7 @@ let visualizer;
 async function loadGraph(graphId) {
 const token = localStorage.getItem('token');
 try {
-const response = await fetch(`http://localhost:8080/graphs/${graphId}`, {
+const response = await fetch(`/graphs/${graphId}`, {
 headers: {
 'Authorization': `Bearer ${token}`
 }
@@ -320,7 +320,7 @@ return;
 const graphData = visualizer.exportToJSON();
 const token = localStorage.getItem('token');
 try {
-const response = await fetch('http://localhost:8080/graphs/save', {
+const response = await fetch('/graphs/save', {
 method: 'POST',
 headers: {
 'Content-Type': 'application/json',
