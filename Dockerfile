@@ -1,17 +1,27 @@
+# =====================================================
+# RAILWAY OPTIMIZED DOCKERFILE
+# =====================================================
 FROM maven:3.8.4-openjdk-17-slim AS build
+
 WORKDIR /app
-COPY pom.xml
-RUN mvn dependency:go-offline
-COPY src ./src
+
+# Copy all files
+COPY . .
+
+# Build with skip tests
 RUN mvn clean package -DskipTests
+
+# Runtime stage
 FROM openjdk:17-jdk-slim
 
-FROM ubuntu:22.04
-RUN apt-get update && \ apt-get install -y openjdk-17-jdk &&\ apt-get clean
-
 WORKDIR /app
-COPY --from=build/app/target/*.jar app.jar
-ENV JAVA_HOME=/usr/local/openjdk-17
-ENV PATH=$JAVA_HOME/bin:$PATH
+
+# Copy JAR
+COPY --from=build /app/target/*.jar app.jar
+
+# Install curl for health checks
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","app.jar"]
+
+CMD ["java", "-jar", "app.jar", "--spring.profiles.active=railway"]
