@@ -81,11 +81,11 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 // Allowed origins
         configuration.setAllowedOrigins(Arrays.asList(
-               "http://localhost:*",
-            "http://127.0.0.1:*",
+              "https://*.railway.app",
             "https://*.onrender.com",
-            "https://*.railway.app",
-            "https://*.koyeb.app"
+            "http://localhost:3000",
+            "http://localhost:8080",
+            "http://localhost:5500"
         ));// Allowed methods
         configuration.setAllowedMethods(Arrays.asList(
                 "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"
