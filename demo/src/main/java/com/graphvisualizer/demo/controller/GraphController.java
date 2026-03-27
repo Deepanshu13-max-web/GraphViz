@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 @RestController
 @RequestMapping("/graphs")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://magnificent-art-production.up.railway.app/")
 public class GraphController {
     private final GraphService graphService;private final UserService userService;
     public GraphController(GraphService graphService, UserService userService) {
