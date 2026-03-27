@@ -81,7 +81,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 // Allowed origins
         configuration.setAllowedOrigins(Arrays.asList(
-                "https://magnificent-art-production.up.railway.app/"
+                "*"
         ));// Allowed methods
         configuration.setAllowedMethods(Arrays.asList(
                 "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"
