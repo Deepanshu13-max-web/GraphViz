@@ -46,10 +46,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
 // Public endpoints
                                 .requestMatchers("/**").permitAll()
-                                .requestMatchers("/api/auth/**").permitAll()
-                                .requestMatchers("/api/auth/test").permitAll()
-                                .requestMatchers("/api/auth/signup").permitAll()
-                                .requestMatchers("/api/auth/login").permitAll()
+                                .requestMatchers("/auth/**").permitAll()
+                                .requestMatchers("/auth/test").permitAll()
+                                .requestMatchers("/auth/signup").permitAll()
+                                .requestMatchers("/auth/login").permitAll()
 // Static resources
                                 .requestMatchers("/", "/index.html", "/login.html", "/signup.html",
                                         "/dashboard.html").permitAll()
