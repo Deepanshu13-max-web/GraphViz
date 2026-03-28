@@ -124,7 +124,8 @@
 //         CorsConfiguration configuration = new CorsConfiguration();
 // // Allowed origins
 //         configuration.setAllowedOrigins(Arrays.asList(
-//               "https://*.railway.app",
+               "https://magnificent-art-production.up.railway.app/",
+//             "https://*.railway.app",
 //             "https://*.onrender.com",
 //             "http://localhost:3000",
 //             "http://localhost:8080",
@@ -253,6 +254,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 // Allowed origins
         configuration.setAllowedOrigins(Arrays.asList(
+                "https://magnificent-art-production.up.railway.app/",    
                 "https://*.railway.app",
                 "http://localhost:3000",
                 "http://localhost:5500",
