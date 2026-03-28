@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 @RestController
 @RequestMapping("/users")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://magnificent-art-production.up.railway.app/")
 public class UserController {
     private final UserService userService;
     public UserController(UserService userService) {
