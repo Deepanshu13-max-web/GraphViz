@@ -219,6 +219,9 @@ public class SecurityConfig {
                                 .requestMatchers("/api/auth/test").permitAll()
                                 .requestMatchers("/api/auth/signup").permitAll()
                                 .requestMatchers("/api/auth/login").permitAll()
+                                .requestMatchers("/auth/test").permitAll()
+                                .requestMatchers("/auth/signup").permitAll()
+                                .requestMatchers("/auth/login").permitAll()
 // Static resources
                                 .requestMatchers("/", "/index.html", "/login.html", "/signup.html",
                                         "/dashboard.html").permitAll()
@@ -250,6 +253,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 // Allowed origins
         configuration.setAllowedOrigins(Arrays.asList(
+                "https://*.railway.app",
                 "http://localhost:3000",
                 "http://localhost:5500",
                 "http://localhost:8080",
