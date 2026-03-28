@@ -355,7 +355,7 @@ const modal = document.getElementById('loadModal');
 const listContainer = document.getElementById('savedGraphsList');
 const token = localStorage.getItem('token');
 try {
-const response = await fetch('http://localhost:8080/api/graphs/list', {
+const response = await fetch('/graphs/list', {
 headers: {
 'Authorization': `Bearer ${token}`
 }
