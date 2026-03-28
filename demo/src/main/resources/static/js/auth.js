@@ -30,7 +30,7 @@ loginBtn.disabled = true;
 const email = document.getElementById('email').value;
 const password = document.getElementById('password').value;
 try {
-const response = await fetch('${API_BASE_URL}/auth/login', {
+const response = await fetch(`${API_BASE_URL}/auth/login`, {
 method: 'POST',
 headers: {
 'Content-Type': 'application/json'
@@ -96,7 +96,7 @@ return;
 signupBtn.classList.add('loading');
 signupBtn.disabled = true;
 try {
-const response = await fetch('${API_BASE_URL}/auth/signup', {
+const response = await fetch(`${API_BASE_URL}/auth/signup`, {
 method: 'POST',
 headers: {
 'Content-Type': 'application/json'
