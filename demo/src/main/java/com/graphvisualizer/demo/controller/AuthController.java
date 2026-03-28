@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://magnificent-art-production.up.railway.app/")
 public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtUtils jwtUtils;
