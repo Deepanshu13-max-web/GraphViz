@@ -24,7 +24,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
         String path = request.getServletPath();
         System.out.println("Path:"+path);
-       if(path.startsWith("/api/auth")){
+       if(path.startsWith("/auth")){
            chain.doFilter(request,response);
            return;
        }
