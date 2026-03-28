@@ -1,5 +1,6 @@
 
 // js/auth.js
+const API_BASE_URL = 'https://magnificent-art-production.up.railway.app';
 
 document.addEventListener('DOMContentLoaded', () => {
 // Check if user is already logged in
@@ -29,7 +30,7 @@ loginBtn.disabled = true;
 const email = document.getElementById('email').value;
 const password = document.getElementById('password').value;
 try {
-const response = await fetch('/auth/login', {
+const response = await fetch('${API_BASE_URL}/auth/login', {
 method: 'POST',
 headers: {
 'Content-Type': 'application/json'
@@ -95,7 +96,7 @@ return;
 signupBtn.classList.add('loading');
 signupBtn.disabled = true;
 try {
-const response = await fetch('/auth/signup', {
+const response = await fetch('${API_BASE_URL}/auth/signup', {
 method: 'POST',
 headers: {
 'Content-Type': 'application/json'
