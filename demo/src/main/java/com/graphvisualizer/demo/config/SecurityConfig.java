@@ -30,50 +30,93 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-// Enable CORS with configuration
-                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-// Disable CSRF for stateless APIs
-                .csrf(csrf -> csrf.disable())
-                // Exception handling
-                .exceptionHandling(exception -> exception
-                        .authenticationEntryPoint(unauthorizedHandler)
-                )
-// Stateless session
-                .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
-// Authorize requests
-                .authorizeHttpRequests(auth -> auth
-// Public endpoints
-                                .requestMatchers("/**").permitAll()
-                                .requestMatchers("/auth/**").permitAll()
-                                .requestMatchers("/auth/test").permitAll()
-                                .requestMatchers("/auth/signup").permitAll()
-                                .requestMatchers("/auth/login").permitAll()
-// Static resources
-                                .requestMatchers("/", "/index.html", "/login.html", "/signup.html",
-                                        "/dashboard.html").permitAll()
-                                .requestMatchers("/css/**", "/js/**", "/assets/**", "/static/**").permitAll()
-                                // ✅ CONTENT PAGES - Algorithms aur DSA content sabke liye
-                                .requestMatchers("/algorithms/**").permitAll()
-                                .requestMatchers("/dsa-content/**").permitAll()
+             // ✅ CORS ENABLE
+            .cors(cors -> cors.configure(http))
+            
+            // ✅ CSRF DISABLE (IMPORTANT)
+            .csrf(csrf -> csrf.disable())
+            
+            // ✅ EXCEPTION HANDLING
+            .exceptionHandling(exception -> exception
+                .authenticationEntryPoint(unauthorizedHandler)
+            )
+            
+            // ✅ STATELESS SESSION
+            .sessionManagement(session -> session
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            )
+            
+            // ✅ AUTHORIZATION
+            .authorizeHttpRequests(auth -> auth
+                // ✅ PUBLIC ENDPOINTS - NO AUTH REQUIRED
+                .requestMatchers("/auth/login").permitAll()
+                .requestMatchers("/auth/signup").permitAll()
+                .requestMatchers("/auth/test").permitAll()
+                .requestMatchers("/auth/**").permitAll()
+                
+                // ✅ STATIC RESOURCES
+                .requestMatchers("/", "/index.html", "/login.html", "/signup.html", "/dashboard.html").permitAll()
+                .requestMatchers("/css/**", "/js/**", "/assets/**", "/static/**").permitAll()
+                .requestMatchers("/algorithms/**", "/dsa-content/**").permitAll()
+                .requestMatchers("/favicon.ico").permitAll()
+                
+                // ✅ ALL OTHER NEED AUTH
+                .anyRequest().authenticated()
+            )
+            
+            // ✅ JWT FILTER
+            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
-                                // ✅ MAIN PAGES - Landing page, login, signup
-                                .requestMatchers("/", "/index.html", "/login", "/login.html",
-                                        "/signup", "/signup.html").permitAll()
-
-                                // ✅ H2 Console (agar use kar rahe ho)
-                                .requestMatchers("/h2-console/**").permitAll()
 
 
 
 
 
-// All other requests need authentication
-                                .anyRequest().authenticated()
-                )
-// Add JWT filter
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+            
+// // Enable CORS with configuration
+//                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+// // Disable CSRF for stateless APIs
+//                 .csrf(csrf -> csrf.disable())
+//                 // Exception handling
+//                 .exceptionHandling(exception -> exception
+//                         .authenticationEntryPoint(unauthorizedHandler)
+//                 )
+// // Stateless session
+//                 .sessionManagement(session -> session
+//                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                 )
+// // Authorize requests
+//                 .authorizeHttpRequests(auth -> auth
+// // Public endpoints
+//                                 .requestMatchers("/**").permitAll()
+//                                 .requestMatchers("/auth/**").permitAll()
+//                                 .requestMatchers("/auth/test").permitAll()
+//                                 .requestMatchers("/auth/signup").permitAll()
+//                                 .requestMatchers("/auth/login").permitAll()
+// // Static resources
+//                                 .requestMatchers("/", "/index.html", "/login.html", "/signup.html",
+//                                         "/dashboard.html").permitAll()
+//                                 .requestMatchers("/css/**", "/js/**", "/assets/**", "/static/**").permitAll()
+//                                 // ✅ CONTENT PAGES - Algorithms aur DSA content sabke liye
+//                                 .requestMatchers("/algorithms/**").permitAll()
+//                                 .requestMatchers("/dsa-content/**").permitAll()
+
+//                                 // ✅ MAIN PAGES - Landing page, login, signup
+//                                 .requestMatchers("/", "/index.html", "/login", "/login.html",
+//                                         "/signup", "/signup.html").permitAll()
+
+//                                 // ✅ H2 Console (agar use kar rahe ho)
+//                                 .requestMatchers("/h2-console/**").permitAll()
+
+
+
+
+
+// // All other requests need authentication
+//                                 .anyRequest().authenticated()
+//                 )
+// // Add JWT filter
+//                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
     @Bean
